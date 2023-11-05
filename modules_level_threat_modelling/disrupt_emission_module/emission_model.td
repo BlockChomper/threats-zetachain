@@ -1,6 +1,6 @@
-__Goal: Disrupt Cross Chain Module__
+__Goal: Disrupt Emission\n\n\n__
 
-- **Disrupt Voting on \n Inbound and Outbound Transactions**
+- **Disrupt Voting on \n Inbound and Outbound Transactions**\n\n\n
   + Compromise ballot \n CRUD operations\n\n\n
     - Manipulate stored \n ballots to alter vote outcomes\n\n\n
       > Implement cryptographic \n audit trails for ballot changes [ ]\n\n\n
