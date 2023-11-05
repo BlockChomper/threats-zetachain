@@ -1,3 +1,5 @@
+## Goal: Steal user fund
+
 ### Exploit Inbound Transaction Processing
 - Insert malicious code into smart contracts.
 - Trigger unauthorized fund transfers during CCTX.

@@ -1,38 +1,37 @@
-__Goal: Crash the validator to DOS (Deny of Service) the network__
+__Goal: Crash the \n validator\n\n\n__
 
 - **Exploit System Vulnerabilities**
-  + Utilize known software bugs in the validator's codebase.
-  + Inject malformed data into the validator to trigger crashes.
-  + Overwhelm the validator memory with large or complex transactions.
-  + Execute code exploits specific to the validator's operating system or software.
+  + Utilize known software \n bugs in the validator's codebase.\n\n\n
+  + Inject malformed data into \n the validator to \n trigger crashes.\n\n\n
+  + Overwhelm the validator memory \n with large or complex transactions.\n\n\n
 
 - **Network-Level Attacks**
-  + Flood the validator with traffic to exhaust network resources.
-  + Perform a Sybil attack with multiple nodes to disrupt network consensus.
-  + Conduct a DDoS attack by coordinating a botnet to target validators.
+  + Flood the validator with \n traffic to exhaust \network resources.\n\n\n
+  + Perform a Sybil attack with \n multiple nodes \n to disrupt network consensus.\n\n\n
+  + Conduct a DDoS attack by \n coordinating a botnet \n to target validators.\n\n\n
 
 - **Transaction-Level Attacks**
-  + Send rapid sequences of complex transactions to max out processing capabilities.
-  + Craft transactions that cause infinite loops or unhandled exceptions in transaction processing.
-  + Exploit smart contracts to perform actions that validators cannot process efficiently.
+  + Send rapid sequences of \n complex transactions to \n max out processing capabilities.\n\n\n
+  + Craft transactions that \n cause infinite loops or \n unhandled exceptions in transaction processing.\n\n\n
+  + Exploit smart contracts to \n  perform actions that \n validators cannot process efficiently.\n\n\n
 
 - **Protocol-Based Attacks**
-  + Manipulate messaging or consensus protocols to create conflicts and confusion among nodes.
-  + Abuse protocol weaknesses to create states that validators cannot reconcile.
-  + Induce forks through conflicting transactions to split network consensus.
+  + Manipulate messaging or \n consensus protocols to \n create conflicts and confusion among nodes.\n\n\n
+  + Abuse protocol weaknesses \n to create states that \n validators cannot reconcile.\n\n\n
+  + Induce forks through \n conflicting transactions to \n split network consensus.\n\n\n
 
 - **Resource Exhaustion**
-  + Continuously request resource-intensive operations to deplete computational power.
-  + Engage smart contracts in ways that consume excessive gas, depleting network resources.
+  + Continuously request \n resource-intensive operations \n to deplete computational power.\n\n\n
+  + Engage smart contracts \n in ways that consume excessive gas, \n depleting network resources.\n\n\n
 
 - **Malicious Contract Deployment**
-  + Deploy smart contracts designed to perform actions that are detrimental to validator performance.
-  + Initiate contracts that interact in unexpected ways, causing validators to fail.
+  + Deploy smart contracts designed \n to perform actions that are detrimental \n to validator performance.\n\n\n
+  + Initiate contracts that \n interact in unexpected ways, causing validators to fail.\n\n\n
 
 - **Insider Threats**
-  + Compromise insider accounts to gain direct access to validator nodes.
-  + Utilize insider knowledge to perform actions that would not be externally visible.
+  + Compromise insider accounts \n to gain direct access to \n validator nodes.\n\n\n
+  + Utilize insider knowledge to \n perform actions that \n would not be externally visible.\n\n\n
 
 - **Cryptographic Attacks**
-  + Attempt to break cryptographic algorithms used by validators to ensure data integrity.
-  + Exploit any weaknesses in cryptographic implementations to cause unexpected behavior.
+  + Attempt to break cryptographic \n algorithms used by validators \n to ensure data integrity.\n\n\n
+  + Exploit any weaknesses in \n cryptographic implementations \n to cause crash.\n\n\n

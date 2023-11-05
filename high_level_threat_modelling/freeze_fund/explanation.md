@@ -1,3 +1,5 @@
+## Goal: freeze the fund
+
 **Inbound Transaction Handling Issues**
 - Invalid CCTXs are sent to disrupt the normal transaction process.
 - Incorrect contract addresses are used to ensure transaction failures.
