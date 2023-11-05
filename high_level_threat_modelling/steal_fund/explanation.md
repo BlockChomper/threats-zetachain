@@ -53,3 +53,5 @@
 - Spend funds multiple times pre-acknowledgment.
 - Broadcast conflicting transactions simultaneously.
 - Trick network with race attacks for double spending.
+
+![Steal Fund](steal_fund.svg)
