@@ -1,66 +1,56 @@
-- **Disrupt Reward Distribution**
-  + **Exploit Arithmetic Vulnerabilities**
-    - Trigger an overflow error in token emission calculations
-      - Implement checks for arithmetic overflows in smart contracts [ ]
-      - Use smart contract programming languages that prevent overflows [x]
-    - Cause an underflow error to disrupt token balances
-      - Employ safe math operations that revert on underflows [x]
-  + **Induce Logic Flaws**
-    - Exploit rounding errors to alter reward distributions
-      - Implement arbitrary precision arithmetic for reward calculations [ ]
-      - Conduct thorough testing on reward distribution logic [ ]
-    - Utilize unexpected input to cause panic in smart contracts
-      - Input validation to ensure all parameters are within expected ranges [ ]
-      - Use fuzzing to test smart contract resilience against panic conditions [ ]
-  + **Manipulate State and Data**
-    - Inject invalid state changes to corrupt reward tracking
-      - Enable transaction rollbacks on detection of invalid state transitions [ ]
-      - Implement strict state transition rules in smart contracts [ ]
-    - Alter on-chain parameters via governance attack
-      - Require high quorum and supermajority for governance decisions [x]
-      - Establish a waiting period for all governance actions to be scrutinized [ ]
-  + **Disrupt Consensus Mechanism**
-    - Compromise consensus nodes to skew reward decisions
-      - Multi-layered security protocols for nodes including hardware security [ ]
-      - Regular rotation and random selection of consensus nodes [ ]
-    - Inject false consensus messages to create invalid blocks
-      - Cryptographically secure message signing between nodes [x]
-      - Network monitoring to detect and isolate malicious nodes [ ]
-  + **Subvert Cryptographic Protocols**
-    - Attack threshold signature scheme (TSS) to prevent proper signing
-      - Use threshold cryptography with a high threshold for added security [ ]
-      - Regular security audits of TSS implementation [ ]
-    - Exploit vulnerabilities in cryptographic libraries used by nodes
-      - Keep cryptographic libraries up-to-date [x]
-      - Independent security reviews of the cryptographic stack [ ]
-  + **Attack External Dependencies**
-    - Compromise oracle services to feed incorrect data for reward calculations
-      - Use decentralized oracles with consensus on data accuracy [ ]
-      - Monitor oracle feeds for anomalies and have fallback oracles [ ]
-    - Manipulate external chain data used for cross-chain emissions
-      - Validate external chain data with cross-referencing [ ]
-      - Employ redundancy in data sourcing from external chains [ ]
-  + **Create Resource Inefficiencies**
-    - Deplete gas reserves through resource exhaustion attacks
-      - Monitor for abnormal transaction patterns and set gas usage limits [ ]
-      - Adaptive gas pricing based on current network congestion [x]
-    - Overwhelm the network with high-load transactions to drain rewards
-      - Implement rate limiting and anti-spam measures [x]
-      - Employ a dynamic fee structure to increase costs for attackers [ ]
-  + **Conduct Smart Contract Attacks**
-    - Bypass contract logic to withdraw rewards without entitlement
-      - Regular contract audits to check for vulnerabilities like reentrancy [ ]
-      - Implement a secure withdrawal pattern with checks-effects-interactions [ ]
-    - Reentrancy attack to claim rewards multiple times
-      - Use reentrancy guards in smart contracts [x]
-    - Replay past transactions to claim rewards again
-      - Ensure strict nonce management and transaction finality [x]
-  + **Systemic Issues**
-    - Induce system-wide panic due to critical software failure
-      - Redundant system design to maintain operations during partial failure [ ]
-      - Real-time monitoring and alerting for system-wide anomalies [ ]
-    - Trigger network-wide congestion to delay reward distributions
-      - Scalable infrastructure to handle surges in network activity [ ]
-      - Prioritization of critical consensus and reward distribution transactions [ ]
+__Goal: Disrupt Cross Chain Module__
 
-This attack tree provides a more comprehensive view of potential vulnerabilities specifically related to arithmetic operations, logic flaws, state manipulation, consensus disruption, and smart contract weaknesses. Each attack vector includes tailored mitigations, both implemented [x] and proposed [ ], to prevent or mitigate the risk of an attack that aims to disrupt the reward distribution mechanism in the emissions module of ZetaChain.
+- **Disrupt Voting on \n Inbound and Outbound Transactions**
+  + Compromise ballot \n CRUD operations\n\n\n
+    - Manipulate stored \n ballots to alter vote outcomes\n\n\n
+      > Implement cryptographic \n audit trails for ballot changes [ ]\n\n\n
+      > Conduct periodic integrity \n checks on ballot storage [x]\n\n\n
+    - Inject logic bugs to prevent \n correct ballot finalization\n\n\n
+      > Use formal verification for \n critical voting functions [ ]\n\n\n
+      > Set up automated testing for \n all voting pathways [x]\n\n\n
+  + Gain unauthorized access to add or \n  remove observer validators\n\n\n
+    - Exploit access control \n vulnerabilities in `MsgAddObserver`\n\n\n
+      > Enforce strict access \n control policies and permissions [ ]\n\n\n
+      > Utilize multi-factor authentication \n for admin actions [x]\n\n\n
+    - Modify genesis settings to \n redirect observer authorizations\n\n\n
+      > Lock down genesis configuration changes [ ]\n\n\n
+      > Use transparent and \n auditable genesis change proposals [x]\n\n\n
+  + Change core parameters to invalid settings\n\n\n
+    - Exploit lack of \n validation in `MsgUpdateCoreParams`\n\n\n
+      > Implement comprehensive \n parameter validation checks [ ]\n\n\n
+      > Require consensus for any \n parameter change [x]\n\n\n
+  + Submit false blame \n information through `MsgAddBlameVote`\n\n\n
+    - Fabricate blame to disqualify honest validators\n\n\n
+      > Require proof of misbehavior for blame acceptance [ ]\n\n\n
+      > Set up a dispute \n resolution mechanism for blame votes [ ]\n\n\n
+    - Maliciously toggle inbound \n or outbound transaction flags\n\n\n
+      > Apply change delays and \n notifications for flag updates [ ]\n\n\n
+      > Multi-signature requirements \n for critical flag changes [x]\n\n\n
+  + Interrupt or incorrectly initiate key generation\n\n\n
+    - Send false `MsgUpdateKeygen` \n to reset keygen process\n\n\n
+    - Submit false headers to \n disrupt chain synchronization\n\n\n
+      > Employ consensus \n verification for new block headers [ ]\n\n\n
+      > Use multiple \n independent observer validators for header verification [x]\n\n\n
+  + Directly attack observer nodes to manipulate votes\n\n\n
+    - Use DDoS attacks to \n incapacitate observer nodes during voting\n\n\n
+      > Distribute observer \n nodes geographically for resilience [ ]\n\n\n
+      > Implement DDoS protection and anomaly detection systems [x]\n\n\n
+    - Intercept and alter \n votes during transmission\n\n\n
+      > Encrypt inter-validator communication [x]\n\n\n
+      > Use secure, authenticated channels for node communication [ ]\n\n\n
+  + Use vulnerable library \n versions in observer module\n\n\n
+    - Introduce bugs or \n backdoors through dependencies\n\n\n
+      > Automate dependency updates with security review processes [ ]\n\n\n
+      > Monitor third-party libraries for known vulnerabilities [x]\n\n\n
+  + Exploit transaction \n replay for double voting\n\n\n
+    - Reuse vote transactions \n to skew results\n\n\n
+      > Implement unique transaction \n identifiers [x]\n\n\n
+      > Enforce transaction \n finality and nonce checks [ ]\n\n\n
+  + Create misconfiguration in o\n bserver nodes\n\n\n
+    - Alter node settings to \n cause incorrect vote casting\n\n\n
+      > Standardize configuration \n deployment with audit trails [ ]\n\n\n
+      > Regularly review and \n test node configurations [x]\n\n\n
+  + Bypass access control to \n execute unauthorized actions\n\n\n
+    - Perform actions as a \n non-admin or incorrect admin group\n\n\n
+      > Enforce role-based \n access control with strict verification [x]\n\n\n
+      > Regularly audit admin \n groups and access logs [ ]\n\n\n
