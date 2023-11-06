@@ -1,0 +1,251 @@
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+
+    }
+  }
+}%%
+
+graph TD
+    subgraph ZetaChain
+        subgraph KEY
+            key_1["Items with `*ChainClient` as their Struct refer to `EVMChainClient` or `BitcoinChainClient`"]
+        end
+
+        subgraph ZetaClient
+            zeta_client_start["cmd/zetaclientd/start.go\nstart()"]
+            zeta_client_MonitorCore["cmd/zetaclientd/start.go:241\nCoreObserver.MonitorCore()"]
+            zeta_client_ExternalChainWatcher["zetaclient/*_client.go\n*ChainClient.ExternalChainWatcher()"]
+            zeta_client_startSendScheduler["zetaclient/zetacore_observer.go:87\nCoreObserver.startSendScheduler()"]
+            zeta_client_observeOutTx["zetaclient/*_client.go\n*ChainClient.observeOutTx()"]
+
+            subgraph "Start external chain client observations"
+                zeta_client_Start["cmd/zetaclientd/start.go:236\nStart()"]
+                
+
+                subgraph "Observe Inbound EVM chain"
+                    direction TB
+                    observe_inbound_evm_chain_ExternalChainWatcherForNewInboundTrackerSuggestions["zetaclient/evm_client.go:249\nEVMChainClient.ExternalChainWatcherForNewInboundTrackerSuggestions()"]
+                    observe_inbound_evm_chain_ObserveTrackerSuggestions["zetaclient/inbound_tracker.go:25\nEVMChainClient.ObserveTrackerSuggestions()"]
+                    observe_inbound_evm_chain_GetInboundTrackersForChain["zetaclient/inbound_tracker.go:114\nEVMChainClient.ObserveTrackerSuggestions()"]
+                    observe_inbound_evm_chain_InTxTrackerAllByChain["zetaclient/query.go:231\nZetaCoreBridge.GetInboundTrackersForChain()"]
+                    observe_inbound_evm_chain_cond_coin_type{"What coin\ntype in TX?"}       
+                    observe_inbound_evm_chain_CheckReceiptForCoinTypeZeta["zetaclient/inbound_tracker.go:122\EVMChainClient.CheckReceiptForCoinTypeZeta()"]                                                  
+                    observe_inbound_evm_chain_CheckReceiptForCoinTypeERC20["zetaclient/inbound_tracker.go:128\nEVMChainClient.CheckReceiptForCoinTypeERC20()"]
+                    observe_inbound_evm_chain_CheckReceiptForCoinTypeGas["zetaclient/inbound_tracker.go:134\nEVMChainClient.CheckReceiptForCoinTypeGas()"]
+                    observe_inbound_evm_chain_PostSend_1["zetaclient/inbound_tracker.go:169\nZetaCoreBridger.PostSend()"]
+                    observe_inbound_evm_chain_PostSend_2["zetaclient/inbound_tracker.go:203\nZetaCoreBridger.PostSend()"]
+                    observe_inbound_evm_chain_PostSend_3["zetaclient/inbound_tracker.go:252\nZetaCoreBridger.PostSend()"]
+                    observe_inbound_Broadcast["zetaclient/tx.go:102\nZetaCoreBridge.Broadcast()"]
+
+                    observe_inbound_evm_chain_ExternalChainWatcherForNewInboundTrackerSuggestions --> observe_inbound_evm_chain_ObserveTrackerSuggestions
+                    observe_inbound_evm_chain_ObserveTrackerSuggestions --> observe_inbound_evm_chain_GetInboundTrackersForChain
+                    observe_inbound_evm_chain_GetInboundTrackersForChain --> observe_inbound_evm_chain_InTxTrackerAllByChain
+                    observe_inbound_evm_chain_ObserveTrackerSuggestions --> observe_inbound_evm_chain_cond_coin_type
+                    observe_inbound_evm_chain_cond_coin_type -- Zeta --> observe_inbound_evm_chain_CheckReceiptForCoinTypeZeta --> observe_inbound_evm_chain_PostSend_1
+                    observe_inbound_evm_chain_cond_coin_type -- ERC20 --> observe_inbound_evm_chain_CheckReceiptForCoinTypeERC20 --> observe_inbound_evm_chain_PostSend_2
+                    observe_inbound_evm_chain_cond_coin_type -- gas --> observe_inbound_evm_chain_CheckReceiptForCoinTypeGas --> observe_inbound_evm_chain_PostSend_3
+                    observe_inbound_evm_chain_PostSend_1 --> observe_inbound_Broadcast
+                    observe_inbound_evm_chain_PostSend_2 --> observe_inbound_Broadcast
+                    observe_inbound_evm_chain_PostSend_3 --> observe_inbound_Broadcast
+                end
+
+                zeta_client_Start --> observe_inbound_evm_chain_ExternalChainWatcherForNewInboundTrackerSuggestions
+                zeta_client_observeInTX["zetaclient/*_client.go\n*ChainClient.observeInTX()"]
+                zeta_client_PostSend["zetaclient/zetacore_bridge.go\nZetaCoreBridge.PostSend()"]
+                zeta_client_Broadcast["zetaclient/broadcast.go:102\nZetaCoreBridge.Broadcast()"]
+
+                subgraph "Track outbound TXs until confirmation"
+                    gather_outbound_txs_loop_ticker(["Loop while\n*ChainClient not\nstopped"])
+                    gather_outbound_txs_GetAllOutTxTrackerByChain["zetaclient/*_client.go:\nZetaCoreBridger.GetAllOutTxTrackerByChain"]                
+                    
+                    gather_outbound_txs_loop_ticker --> gather_outbound_txs_GetAllOutTxTrackerByChain
+                end
+                zeta_client_observeOutTx --> gather_outbound_txs_loop_ticker
+            end 
+
+            subgraph "Process Outbound TXs"
+                process_outbound_txs_loop_core_observer(["Loop while\nCoreObserver not\nstopped"])
+                process_outbound_txs_GetSupportedChains["zetaclient/zetacore_observer.go:132\nGetSupportedChains()"]
+                process_outbound_txs_loop_chains(["Loop over\nChains"])
+                process_outbound_txs_GetAllOutTxTrackerByChain["zetaclient/zetacore_observer.go:154\nZetaCoreBridger.GetAllOutTxTrackerByChain()"]
+                process_outbound_txs_GetAllPendingCctx["zetaclient/zetacore_observer.go:139\nZetaCoreBridge.GetAllPendingCctx()"]
+                process_outbound_txs_loop_cctxs(["Loop over\nCCTXs"])
+                process_outbound_txs_cond_is_bitcoin{"is bitcoin tx?"}
+
+                process_outbound_txs_loop_chains --> process_outbound_txs_GetAllOutTxTrackerByChain
+                process_outbound_txs_GetAllOutTxTrackerByChain --> process_outbound_txs_GetAllPendingCctx --> process_outbound_txs_loop_cctxs
+                process_outbound_txs_loop_cctxs --> process_outbound_txs_cond_is_bitcoin
+                process_outbound_txs_loop_cctxs -- no more CCTXs to\nloop through for\nthis chain --> process_outbound_txs_loop_chains
+                process_outbound_txs_loop_cctxs --> process_outbound_txs_cond_is_bitcoin
+
+                subgraph "Bitcoin TX"
+                    bitcoin_tx_IsOutTxActive["zetaclient/zetacore_observer.go:184\nOutTxProcessorManager.IsOutTxActive()"]
+                    bitcoin_tx_processBitcoinOutTx["zetaclient/zetacore_observer.go:190\nCoreObserver.processBitcoinOutTx"]
+
+                    bitcoin_tx_IsOutTxActive --> bitcoin_tx_processBitcoinOutTx
+
+                    subgraph "Process Tx"
+                        process_tx_StartTryProcess["zetaclient/zetacore_observer.go:268\nOutTxProcessorManager.StartTryProcess()"]
+                        process_tx_EndTryProcess["zetaclient/btc_signer.go:244\nOutTxProcessorManager.EndTryProcess()"]
+
+                        subgraph "Prepare TX for Broadcast"
+                            prepare_tx_for_broadcast_btc_TryProcessOutTx["zetaclient/zetacore_observer.go:270\nBTCSigner.TryProcessOutTx()"]
+                            prepare_tx_for_broadcast_btc_IsSendOutTxProcessed["zetaclient/btc_signer.go:280\nBitcoinChainClient.IsSendOutTxProcessed()"]
+
+                            subgraph "Check if outbound tx processed" 
+                                check_if_outbound_tx_processed_btc_cond_included{"Is TX in mempool?"}
+                                check_if_outbound_tx_processed_btc_checkNSaveIncludedTx["zetaclient/bitcoin_client.go:428\nBitcoinChainClient.checkNSaveIncludedTx()"]
+                                check_if_outbound_tx_processed_btc_PostReceiveConfirmation["zetaclient/bitcoin_client.go:455\nZetaCoreBridger.PostReceiveConfirmation"]
+
+                                check_if_outbound_tx_processed_btc_cond_included -- no --> check_if_outbound_tx_processed_btc_checkNSaveIncludedTx
+                                check_if_outbound_tx_processed_btc_cond_included -- yes --> check_if_outbound_tx_processed_btc_PostReceiveConfirmation
+                                check_if_outbound_tx_processed_btc_checkNSaveIncludedTx --> check_if_outbound_tx_processed_btc_PostReceiveConfirmation
+                            end
+
+                            prepare_tx_for_broadcast_btc_SignWithdrawTx["zetaclient/btc_signer.go:312\nBTCSigner.SignWithdrawTx()"]
+                            prepare_tx_for_broadcast_btc_Broadcast["zetaclient/btc_signer.go:341\nBTCSigner.Broadcast"] -. send raw tx .-> NOTE_BC_BTC>"This sends an actual RPC msg to the chain"]                        
+                            prepare_tx_for_broadcast_btc_AddTxHashToOutTxTracker["zetaclient/btc_signer.go:347\nZetaCoreBridge.AddTxHashToOutTxTracker"]
+                            prepare_tx_for_broadcast_btc_SaveBroadcastedTx["zetaclient/btc_signer.go:354\nBitcoinChainClient.SaveBroadcastedTx"]
+
+                            prepare_tx_for_broadcast_btc_IsSendOutTxProcessed --> check_if_outbound_tx_processed_btc_cond_included
+                            prepare_tx_for_broadcast_btc_TryProcessOutTx --> prepare_tx_for_broadcast_btc_IsSendOutTxProcessed
+                            check_if_outbound_tx_processed_btc_PostReceiveConfirmation --> prepare_tx_for_broadcast_btc_SignWithdrawTx
+                            prepare_tx_for_broadcast_btc_SignWithdrawTx --> prepare_tx_for_broadcast_btc_Broadcast
+                            prepare_tx_for_broadcast_btc_Broadcast --> prepare_tx_for_broadcast_btc_AddTxHashToOutTxTracker --> prepare_tx_for_broadcast_btc_SaveBroadcastedTx
+                        end                    
+                    end
+
+                    bitcoin_tx_processBitcoinOutTx --> process_tx_StartTryProcess --> prepare_tx_for_broadcast_btc_TryProcessOutTx
+                end
+
+                process_outbound_txs_cond_is_bitcoin -- yes --> bitcoin_tx_IsOutTxActive
+                process_outbound_txs_cond_is_bitcoin -- no --> non_bitcoin_tx_isSendOutTxProcessed
+                prepare_tx_for_broadcast_btc_SaveBroadcastedTx --> process_tx_EndTryProcess --> process_outbound_txs_loop_cctxs                
+
+                subgraph "Non Bitcoin TX"
+                    non_bitcoin_tx_isSendOutTxProcessed["zetaclient/zetacore_observer.go:197\nisSendOutTxProcessed()"]
+
+                    subgraph "Check if outbound tx processed"
+                        check_if_outbound_tx_processed_cond_kind_token{"kind of token"}
+                        check_if_outbound_tx_processed_cond_zeta_received{"Zeta received ok?"}
+                        check_if_outbound_tx_processed_ParseZetaReceived["zetaclient/evm_client.go:365\nZetaConnectorNonEthFilterer.ParseZetaReceived()"]
+                        check_if_outbound_tx_processed_ParseZetaReverted["zetaclient/evm_client.go:402\nZetaConnectorNonEthFilterer.ParseZetaReverted()"]
+                        check_if_outbound_tx_processed_ParseWithdrawn["zetaclient/evm_client.go:469\nERC20CustodyFilterer.ParseWithdrawn()"]
+                        check_if_outbound_tx_processed_PostReceiveConfirmation["zetaclient/evm_client.go\nZetaCoreBridger.PostReceiveConfirmation()"]
+
+                        check_if_outbound_tx_processed_cond_kind_token -- gas --> check_if_outbound_tx_processed_PostReceiveConfirmation
+                        check_if_outbound_tx_processed_cond_kind_token -- zeta --> check_if_outbound_tx_processed_cond_zeta_received
+                        check_if_outbound_tx_processed_cond_kind_token -- ERC20 --> check_if_outbound_tx_processed_ParseWithdrawn --> check_if_outbound_tx_processed_PostReceiveConfirmation
+                        check_if_outbound_tx_processed_cond_zeta_received -- yes --> check_if_outbound_tx_processed_ParseZetaReceived --> check_if_outbound_tx_processed_PostReceiveConfirmation
+                        check_if_outbound_tx_processed_cond_zeta_received -- no --> check_if_outbound_tx_processed_ParseZetaReverted --> check_if_outbound_tx_processed_PostReceiveConfirmation
+                        non_bitcoin_tx_isSendOutTxProcessed --> check_if_outbound_tx_processed_cond_kind_token
+                    end
+
+                    non_bitcoin_tx_StartTryProcess["zetaclient/zetacore_observer.go:234\nOutTxProcessorManager.StartTryProcess()"]
+                    non_bitcoin_tx_TryProcessOutTx["zetaclient/zetacore_observer.go:236\nChainSigner.TryProcessOutTx()"]
+                    non_bitcoin_tx_EndTryProcess["zetaclient/evm_signer.go:325\nOutTxProcessorManager.EndTryProcess()"]
+
+                    check_if_outbound_tx_processed_PostReceiveConfirmation --> non_bitcoin_tx_StartTryProcess --> non_bitcoin_tx_TryProcessOutTx 
+
+                    subgraph "Prepare TX for broadcast"
+                        prepare_tx_for_broadcast_cond_kind_outbound{"What kind\nof outbound\ntx?"}
+                        prepare_tx_for_broadcast_cond_kind_token{"What kind of token?"}
+                        prepare_tx_for_broadcast_SignWithdrawTx["zetaclient/evm_signer.go:494\nEVMSigner.SignWithdrawTx()"]
+                        prepare_tx_for_broadcast_SignERC20WithdrawTx["zetaclient/evm_signer.go:505\nEVMSigner.SignERC20WithdrawTx()"]
+                        prepare_tx_for_broadcast_SignOutboundTx["zetaclient/evm_signer.go:532\nEVMSigner.SignOutboundTx()"]
+                        prepare_tx_for_broadcast_SignRevertTx["zetaclient/evm_signer.go:517\nEVMSigner.SignRevertTx()"]
+                        prepare_tx_for_broadcast_Broadcast["zetaclient/evm_signer.go:567\nEVMSigner.Broadcast()"] -. send raw tx .->  NOTE_BC>"This sends an actual RPC msg to the chain"]
+                        prepare_tx_for_broadcast_AddTxHashToOutTxTracker["zetaclient/evm_signer.go:572\nZetaCoreBridger.AddTxHashToOutTxTracker()"]
+
+                        non_bitcoin_tx_TryProcessOutTx --> prepare_tx_for_broadcast_cond_kind_outbound 
+                        prepare_tx_for_broadcast_cond_kind_outbound -- ZetaChain sender, Pending Outbound--> prepare_tx_for_broadcast_cond_kind_token
+                        prepare_tx_for_broadcast_cond_kind_outbound -- ZetaChain receiver, Pending Revert --> prepare_tx_for_broadcast_cond_kind_token
+                        prepare_tx_for_broadcast_cond_kind_outbound -- External Chain, Pending Outbound --> prepare_tx_for_broadcast_SignOutboundTx
+                        prepare_tx_for_broadcast_cond_kind_outbound -- External Chain, Pending Revert --> prepare_tx_for_broadcast_SignRevertTx
+
+                        prepare_tx_for_broadcast_cond_kind_token -- gas --> prepare_tx_for_broadcast_SignWithdrawTx
+                        prepare_tx_for_broadcast_cond_kind_token -- ERC20 --> prepare_tx_for_broadcast_SignERC20WithdrawTx
+                        prepare_tx_for_broadcast_cond_kind_token -- zeta\n(excluding pending revert) --> prepare_tx_for_broadcast_SignOutboundTx
+
+                        prepare_tx_for_broadcast_SignWithdrawTx --> prepare_tx_for_broadcast_Broadcast
+                        prepare_tx_for_broadcast_SignERC20WithdrawTx --> prepare_tx_for_broadcast_Broadcast
+                        prepare_tx_for_broadcast_SignOutboundTx --> prepare_tx_for_broadcast_Broadcast
+                        prepare_tx_for_broadcast_SignRevertTx --> prepare_tx_for_broadcast_Broadcast
+                        prepare_tx_for_broadcast_Broadcast --> prepare_tx_for_broadcast_AddTxHashToOutTxTracker
+                    end
+
+                end
+            end
+
+            prepare_tx_for_broadcast_AddTxHashToOutTxTracker -. defer .-> non_bitcoin_tx_EndTryProcess --> process_outbound_txs_loop_cctxs
+
+            zeta_client_start --> zeta_client_MonitorCore --> zeta_client_startSendScheduler
+            zeta_client_start --> zeta_client_Start 
+            zeta_client_startSendScheduler --> process_outbound_txs_loop_core_observer --> process_outbound_txs_GetSupportedChains --> process_outbound_txs_loop_chains
+            zeta_client_Start --> zeta_client_observeOutTx
+            zeta_client_Start --> zeta_client_observeInTX
+            zeta_client_observeInTX --> zeta_client_PostSend
+            zeta_client_PostSend --> zeta_client_Broadcast
+        end
+
+        subgraph ZetaCore
+            subgraph "zetacored initialization"
+                zetacored_initialization_main["cmd/zetacored/main.go\nmain()"]
+                zetacored_initialization_NewRootCmd["cmd/zetacored/root.go\nNewRootCmd()"]
+                zetacored_initialization_initRootCmd["cmd/zetacored/root.go\ninitRootCmd()"]
+                zetacored_initialization_appCreator_newApp["cmd/zetacored/root.go\nappCreator.newApp()"]
+                zetacored_initialization_New["app/app.go\nNew()"]
+            end
+
+            zetacored_initialization_main --> zetacored_initialization_NewRootCmd
+            zetacored_initialization_NewRootCmd -. "start" command on CLI .-> zetacored_initialization_initRootCmd
+            zetacored_initialization_initRootCmd --> zetacored_initialization_appCreator_newApp
+            zetacored_initialization_appCreator_newApp --> zetacored_initialization_New
+
+            subgraph "Process Inbound TX into Pending Outbound"
+                zeta_core_VoteOnObservedInboundTx_Handler["x/crosschain/types/tx.pb.go:1881\n_Msg_VoteOnObservedInboundTx_Handler"]
+                zeta_core_VoteOnObservedInboundTx["x/crosschain/keeper/keeper_cross_chain_tx_vote_inbound_tx.go:58\nMsgServer.VoteOnObservedInboundTx"]
+
+                zeta_core_VoteOnObservedInboundTx_Handler --> zeta_core_VoteOnObservedInboundTx
+
+                subgraph BallotCreation
+                    ballot_creation_FindBallot["x/crosschain/keeper/keeper_cross_chain_tx_vote_inbound_tx.go:87\nZetaObserverKeeper.FindBallot()"]
+                    ballot_creation_EmitEventBallotCreated["x/crosschain/keeper/keeper_cross_chain_tx_vote_inbound_tx.go:92\nobserverKeeper.EmitEventBallotCreated()"]
+                    ballot_creation_AddVoteToBallot["x/observer/keeper/keeper_utils.go:95\nKeeper.AddVoteToBallot()"]
+                    ballot_creation_is_new_ballot{"new ballot\n(ie. first to receive tx)?"}
+                    ballot_creation_CheckIfFinalizingVote["x/crosschain/keeper/keeper_cross_chain_tx_vote_inbound_tx.go:100\nKeeper.CheckIfFinalizingVote()"]
+                    ballot_creation_cond_is_finalized{"Is the ballot finalized?"}
+                    ballot_creation_CreateNewCCTX["x/crosschain/keeper/keeper_cross_chain_tx_vote_inbound_tx.go:122\nKeeper.CreateNewCCTX"]
+
+                    ballot_creation_FindBallot --> ballot_creation_is_new_ballot
+                    ballot_creation_is_new_ballot -- yes --> ballot_creation_EmitEventBallotCreated
+                    ballot_creation_is_new_ballot -- no --> ballot_creation_AddVoteToBallot
+                    ballot_creation_EmitEventBallotCreated --> ballot_creation_AddVoteToBallot
+                    ballot_creation_AddVoteToBallot --> ballot_creation_CheckIfFinalizingVote
+                    ballot_creation_CheckIfFinalizingVote --> ballot_creation_cond_is_finalized
+                    ballot_creation_cond_is_finalized -. no .-> NOTE_FINALIZED>"Already voted, zetacore will\ncontinue processing\nthis incoming tx after\nthe ballot is finalized"]
+                    ballot_creation_cond_is_finalized -- yes --> ballot_creation_CreateNewCCTX
+                end
+
+                %% FIXME - show the execution flow for this
+                zeta_core_EmitEventInboundFinalized["x/crosschain/keeper/keeper_cross_chain_tx_vote_inbound_tx.go:124\nEmitEventInboundFinalized"]
+                zeta_core_cond_is_zeta_receiver{"Is the receiver\nZetaChain?"}
+                zeta_core_cond_is_reverted{"Has the contract reverted?"}
+                zeta_core_PayGasAndUpdateCctx_1["x/crosschain/keeper/keeper_cross_chain_tx_vote_inbound_tx.go:170\nKeeper.PayGasAndUpdateCctx()"]        
+                zeta_core_PayGasAndUpdateCctx_2["x/crosschain/keeper/keeper_cross_chain_tx_vote_inbound_tx.go:218\nKeeper.PayGasAndUpdateCctx()"]        
+
+                ballot_creation_CreateNewCCTX --> zeta_core_cond_is_zeta_receiver
+                zeta_core_cond_is_zeta_receiver -- yes, this is a deposit from the EVM --> zeta_core_cond_is_reverted
+                zeta_core_cond_is_zeta_receiver -- no, this is a cross-chain swap --> zeta_core_PayGasAndUpdateCctx_2 -.-> NOTE_SWAP>"The CCTX is set to Pending Outbound.\nZetaCoreObserver will\npick it up in\nstartSendScheduler()"]
+                zeta_core_cond_is_reverted -- yes --> zeta_core_PayGasAndUpdateCctx_1 -.-> NOTE_REV>"The tx is updated\nw/ outbound tx params\nconfigured for a revert.\nZetaCoreObserver will\npick it up in\nstartSendScheduler()"]
+                zeta_core_cond_is_reverted -- no --> NOTE_NOT_REV>"Deposit from EVM is successful,\ntx is processed"] -. defer .-> zeta_core_EmitEventInboundFinalized
+                zeta_client_Broadcast -. RPC request .-> zeta_core_VoteOnObservedInboundTx_Handler
+                zeta_core_VoteOnObservedInboundTx --> ballot_creation_FindBallot
+                zeta_core_PayGasAndUpdateCctx_1 -. defer .-> zeta_core_EmitEventInboundFinalized
+                zeta_core_PayGasAndUpdateCctx_2 -. defer .-> zeta_core_EmitEventInboundFinalized
+            end
+        end
+    end
+                
