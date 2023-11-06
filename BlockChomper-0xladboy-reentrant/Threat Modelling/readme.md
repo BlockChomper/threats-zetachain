@@ -44,10 +44,6 @@ Code4rena, and they encourage contributions to develop, extend, and improve the 
 
 In [this section](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/key_invariant) as aforementioned, we outline key invariants, which are properties that must always hold true for the ZetaChain system to function securely. 
 
-## Read past cosmos sdk audit report in the context of invariant and impact
-
-In [this section](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/examine_past_read_from_threat_model_and_invariant), we read the past Cosmos SDK audit report in the context of invariant and impact.
-
 ## How to Generate more Attack Trees specific to ZetaChain
 
 We recommend that if security researchers want to generate more attack trees, it will be effective to use a smaller goal or ‘leaf’ from an existing tree as a starting point. Using a ‘leaf’ from the attack trees we have already provided as the attacker end goal will allow a different tree to be created which is more granular and specific to the researchers objective. This approach will help to systematically uncover different security threats by expanding on specific parts of the larger attack surface.
@@ -133,3 +129,7 @@ open threat_model_index.html
 ```
 
 <img width="1576" alt="Screenshot 2023-11-06 at 1 13 06 PM" src="https://github.com/BlockChomper/threats-zetachain/assets/25846666/65aa0458-7e3e-4a84-a422-90adb79cdcbd">
+
+## Additional Materials
+
+In [this section](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/examine_past_read_from_threat_model_and_invariant), we read the past Cosmos SDK audit report in the context of invariant and impact.
