@@ -26,6 +26,29 @@ Lastly, threat models, as documented by Threatdown or any other method, should b
 critical information about the system's vulnerabilities that could be exploited if fallen into the wrong hands. Threatdown is maintained by 
 Code4rena, and they encourage contributions to develop, extend, and improve the standard through collaboration on GitHub.
 
+## View all attack tree in svg format locally
+
+run
+
+```bash
+git clone https://github.com/BlockChomper/threats-zetachain
+```
+
+and then
+
+```
+cd threats-zetachain/BlockChomper-0xladboy-reentrant/Threat\ Modelling 
+```
+
+and then 
+
+```bash
+open threat_model_index.html
+```
+
+<img width="1576" alt="Screenshot 2023-11-06 at 1 13 06 PM" src="https://github.com/BlockChomper/threats-zetachain/assets/25846666/65aa0458-7e3e-4a84-a422-90adb79cdcbd">
+
+
 ## High Level Attack Trees
 
 1. [Consensus Manipulation](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/high_level_threat_modelling/consensus_manipulation)
