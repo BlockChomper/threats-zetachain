@@ -38,7 +38,7 @@ Code4rena, and they encourage contributions to develop, extend, and improve the 
 1. [Crosschain Module](https://github.com/BlockChomper/threats-zetachain/tree/main//BlockChomper-0xladboy-reentrant/Threat%20Modelling/high_level_threat_modelling/consensus_manipulation)
 2. [Emission Module](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/modules_level_threat_modelling/disrupt_emission_module)
 3. [Fungible Module](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/modules_level_threat_modelling/disrupt_fungible_module)
-4. [Observer Module](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/modules_level_threat_modelling/disrupt_oberserver_module)
+4. [Observer Module](https://github.com/BlockChomper/threats-zetachain/blob/188b8c5eac527120c2c92c7955916be771ebf13d/BlockChomper-0xladboy-reentrant/Threat%20Modelling/modules_level_threat_modelling/disrupt_observer_module/readme.md)
 
 ## Key Invariants to Hold
 
