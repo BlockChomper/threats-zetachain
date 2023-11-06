@@ -1,0 +1,39 @@
+flowchart TD
+  A0{Goal: Crash the \n validator\n\n\n}:::objective
+    A0---B1(((OR))):::booleanOr
+      B1---C1(**Exploit System Vulnerabilities**):::condition
+        C1---D1(((AND))):::booleanAnd
+          D1---E1(Utilize known software \n bugs in the validator's codebase.\n\n\n):::condition
+          D1---E2(Inject malformed data into \n the validator to \n trigger crashes.\n\n\n):::condition
+          D1---E3(Overwhelm the validator memory \n with large or complex transactions.\n\n\n):::condition
+      B1---C2(**Network-Level Attacks**):::condition
+        C2---D2(((AND))):::booleanAnd
+          D2---E4(Flood the validator with \n traffic to exhaust \network resources.\n\n\n):::condition
+          D2---E5(Perform a Sybil attack with \n multiple nodes \n to disrupt network consensus.\n\n\n):::condition
+          D2---E6(Conduct a DDoS attack by \n coordinating a botnet \n to target validators.\n\n\n):::condition
+      B1---C3(**Transaction-Level Attacks**):::condition
+        C3---D3(((AND))):::booleanAnd
+          D3---E7(Send rapid sequences of \n complex transactions to \n max out processing capabilities.\n\n\n):::condition
+          D3---E8(Craft transactions that \n cause infinite loops or \n unhandled exceptions in transaction processing.\n\n\n):::condition
+          D3---E9(Exploit smart contracts to \n  perform actions that \n validators cannot process efficiently.\n\n\n):::condition
+      B1---C4(**Protocol-Based Attacks**):::condition
+        C4---D4(((AND))):::booleanAnd
+          D4---E10(Manipulate messaging or \n consensus protocols to \n create conflicts and confusion among nodes.\n\n\n):::condition
+          D4---E11(Abuse protocol weaknesses \n to create states that \n validators cannot reconcile.\n\n\n):::condition
+          D4---E12(Induce forks through \n conflicting transactions to \n split network consensus.\n\n\n):::condition
+      B1---C5(**Resource Exhaustion**):::condition
+        C5---D5(((AND))):::booleanAnd
+          D5---E13(Continuously request \n resource-intensive operations \n to deplete computational power.\n\n\n):::condition
+          D5---E14(Engage smart contracts \n in ways that consume excessive gas, \n depleting network resources.\n\n\n):::condition
+      B1---C6(**Malicious Contract Deployment**):::condition
+        C6---D6(((AND))):::booleanAnd
+          D6---E15(Deploy smart contracts designed \n to perform actions that are detrimental \n to validator performance.\n\n\n):::condition
+          D6---E16(Initiate contracts that \n interact in unexpected ways, causing validators to fail.\n\n\n):::condition
+      B1---C7(**Insider Threats**):::condition
+        C7---D7(((AND))):::booleanAnd
+          D7---E17(Compromise insider accounts \n to gain direct access to \n validator nodes.\n\n\n):::condition
+          D7---E18(Utilize insider knowledge to \n perform actions that \n would not be externally visible.\n\n\n):::condition
+      B1---C8(**Cryptographic Attacks**):::condition
+        C8---D8(((AND))):::booleanAnd
+          D8---E19(Attempt to break cryptographic \n algorithms used by validators \n to ensure data integrity.\n\n\n):::condition
+          D8---E20(Exploit any weaknesses in \n cryptographic implementations \n to cause crash.\n\n\n):::condition

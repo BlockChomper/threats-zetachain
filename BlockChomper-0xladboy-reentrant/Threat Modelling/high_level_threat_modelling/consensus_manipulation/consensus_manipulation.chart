@@ -1,0 +1,39 @@
+flowchart TD
+  A0{Goal: Manipulate Consensus}:::objective
+    A0---B1(((AND))):::booleanAnd
+      B1---C1(**Exploit Validator Nodes**\n\n\n):::condition
+        C1---D1(((AND))):::booleanAnd
+          D1---E1(Compromise a validator node \n to inject false consensus data?\n\n\n):::condition
+            E1-. mitigated by .-F1(Harden validator node \n security with firewalls and \n intrusion detection systems.\n\n\n):::condition
+          D1---E2(Disrupt the validator's \n communication to isolate and gain control?\n\n\n):::condition
+            E2-. mitigated by .-F2(Implement redundant communication \n channels and peer monitoring.\n\n\n):::condition
+      B1---C2(**Control Over Majority \n of Staking Power\n\n\n**):::condition
+        C2---D2(Bribe or coerce large \n stakeholders to act maliciously?\n\n\n):::condition
+          D2-. mitigated by .-E3(Monitor and flag irregular staking \n patterns indicative of manipulation.\n\n\n):::condition
+        C2---D3(Acquire majority staking power \n to influence consensus decisions?):::condition
+          D3-. mitigated by .-E4(Design protocol to discourage \n large stake concentrations via staking limits or incentives for decentralization.\n\n\n):::condition
+      B1---C3(**Sybil Attack**):::condition
+        C3---D4(Create numerous pseudo-anonymous \n nodes to sway consensus?\n\n\n):::condition
+          D4-. mitigated by .-E5(Require identity verification and \n substantial staking for new validator nodes.\n\n\n):::condition
+      B1---C4(**Long-Range Attack**):::condition
+        C4---D5(Fork the blockchain from a past state to \n double-spend or erase transactions?\n\n\n):::condition
+          D5-. mitigated by .-E6(Implement checkpointing and social consensus mechanisms to invalidate deep reorgs.\n\n\n):::condition
+      B1---C5(**Denial of Service Attacks**):::condition
+        C5---D6(Flood the network with transactions to \n clog the consensus process?\n\n\n):::condition
+          D6-. mitigated by .-E7(Rate limit transaction acceptance \n and prioritize consensus-critical traffic.\n\n\n):::condition
+        C5---D7(DDoS attack on key validators during \n critical consensus rounds?\n\n\n):::condition
+          D7-. mitigated by .-E8(Distribute validator nodes geographically \n and implement anti-DDoS measures.\n\n\n):::condition
+      B1---C6(**Network Partitioning**):::condition
+        C6---D8(Split the network to cause \n inconsistency in consensus?\n\n\n):::condition
+          D8-. mitigated by .-E9(Use network health monitoring \n to detect partitions and trigger alerts.\n\n\n):::condition
+      B1---C7(**Transaction Censorship**):::condition
+        C7---D9(Prevent specific \n  transactions from \n being included in blocks?\n\n\n):::condition
+          D9-. mitigated by .-E10(Implement inclusion incentives and \n penalties for censorship.\n\n\n):::condition
+      B1---C8(**Validator Selection**):::condition
+        C8---D10(Form a cartel of validators to \n control consensus decisions?\n\n\n):::condition
+          D10-. mitigated by .-E11(Use algorithmic randomness in validator \n  selection to prevent predictable collusion opportunities.\n\n\n):::condition
+      B1---C9(**Protocol Flaws**):::condition
+        C9---D11(Manipulate message passing to create \n artificial delays or false views?\n\n\n):::condition
+          D11-. mitigated by .-E12(Ensure message authentication and \n implement timing checks against manipulation.\n\n\n):::condition
+        C9---D12(Exploit flaws in the \n  consensus algorithm design?\n\n\n):::condition
+          D12-. mitigated by .-E13(Engage continuous protocol auditing \n and bounty programs for finding vulnerabilities.\n\n\n):::condition
