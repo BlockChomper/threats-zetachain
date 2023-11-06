@@ -2,7 +2,7 @@
 
 # Threat Modelling
 
-![Untitled](Threat%20Modelling%20Readme%20d68bf4002566456187310d0a65226881/Untitled.png)
+!![https://imgur.com/a/Na4kl3h](https://imgur.com/a/Na4kl3h)
 
 ## Introduction
 
