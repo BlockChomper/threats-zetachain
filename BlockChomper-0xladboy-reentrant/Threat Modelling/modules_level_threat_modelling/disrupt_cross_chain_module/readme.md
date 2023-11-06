@@ -41,7 +41,9 @@ flowchart TD
         C7---D7(Gain unauthorized\naccess to admin\npolicy account):::condition
           D7-. mitigated by .-E13(Multi-factor\nauthentication and secure\nadmin operations):::condition
 ```
-### Crosschain Module Attack Tree - Attacker Goal: Disrupt Inbound and Outbound Transaction Processing
+### Crosschain Module Attack Tree 
+
+#### Attacker Goal: Disrupt Inbound and Outbound Transaction Processing
 
 #### Compromise Observer Validators
 - **Unauthorized Access to zetaclient**
