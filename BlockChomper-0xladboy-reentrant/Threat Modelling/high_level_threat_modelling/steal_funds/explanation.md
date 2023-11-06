@@ -1,4 +1,4 @@
-## Goal: Steal user fund
+## Goal: Steal user funds
 
 ### Exploit Inbound Transaction Processing
 - Insert malicious code into smart contracts.
