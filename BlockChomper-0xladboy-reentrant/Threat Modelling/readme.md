@@ -132,4 +132,4 @@ open threat_model_index.html
 
 ## Additional Materials
 
-In [this section](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/examine_past_read_from_threat_model_and_invariant), we read the past Cosmos SDK audit report in the context of invariant and impact.
+In [this section](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/examine_past_read_from_threat_model_and_invariant), we attach a past Cosmos SDK audit report in the context of invariant testing that could be valuable to researchers.
