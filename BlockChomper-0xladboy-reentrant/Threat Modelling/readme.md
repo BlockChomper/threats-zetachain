@@ -132,4 +132,4 @@ open threat_model_index.html
 
 ## Additional Materials
 
-In [this section](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/examine_past_read_from_threat_model_and_invariant), we attach a past Cosmos SDK audit report in the context of invariant testing that could be valuable to researchers.
+In [this section](https://github.com/BlockChomper/threats-zetachain/tree/main/BlockChomper-0xladboy-reentrant/Threat%20Modelling/examine_past_read_from_threat_model_and_invariant), we attach a report from a previous C4 contest relating to Canto, a Cosmos Ecosystem project that highlights issues with broken invariants that could be valuable to researchers, especially as they view the ZetaLotus Alpha research.
