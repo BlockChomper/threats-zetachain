@@ -16,7 +16,9 @@ If the auditor defines the attack tree's root and goal as bypassing the swap lim
 
 then by defining the impact of such a misconfiguration, they can find the issue.
 
-# Medium Severity Finding
+# Medium Severity Finding: Potential risk of using swappedAmount in case of swap error 
+
+https://github.com/code-423n4/2023-06-canto-findings/issues/71
 
 The invariant broken by the issue is that the swappedAmount should not be used for further calculations if the swap operation fails. 
 
