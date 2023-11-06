@@ -1,4 +1,4 @@
-# Past Audit for Cosmos SDK
+# Past C4 Contest for a Cosmos SDK Project (Canto)
 
 https://code4rena.com/reports/2023-06-canto
 
