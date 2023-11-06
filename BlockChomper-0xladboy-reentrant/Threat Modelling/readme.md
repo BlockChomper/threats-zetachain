@@ -2,7 +2,7 @@
 
 # Threat Modelling
 
-!![https://media.discordapp.net/attachments/1137114558016798793/1169308067071000716/block_chomper_a_private_dectective_in_Quantum_Noir_style_featur_63dbfd69-85f4-43b7-9205-0d80dff2607e.png?ex=6554edff&is=654278ff&hm=557a55d8ec1edff3211f0f43e5faf30b45ccb0e813900bc8b372509a3b465a75&=&width=1335&height=889](https://media.discordapp.net/attachments/1137114558016798793/1169308067071000716/block_chomper_a_private_dectective_in_Quantum_Noir_style_featur_63dbfd69-85f4-43b7-9205-0d80dff2607e.png?ex=6554edff&is=654278ff&hm=557a55d8ec1edff3211f0f43e5faf30b45ccb0e813900bc8b372509a3b465a75&=&width=1335&height=889)
+![https://media.discordapp.net/attachments/1137114558016798793/1169308067071000716/block_chomper_a_private_dectective_in_Quantum_Noir_style_featur_63dbfd69-85f4-43b7-9205-0d80dff2607e.png?ex=6554edff&is=654278ff&hm=557a55d8ec1edff3211f0f43e5faf30b45ccb0e813900bc8b372509a3b465a75&=&width=1335&height=889](https://media.discordapp.net/attachments/1137114558016798793/1169308067071000716/block_chomper_a_private_dectective_in_Quantum_Noir_style_featur_63dbfd69-85f4-43b7-9205-0d80dff2607e.png?ex=6554edff&is=654278ff&hm=557a55d8ec1edff3211f0f43e5faf30b45ccb0e813900bc8b372509a3b465a75&=&width=1335&height=889)
 
 ## Introduction
 
