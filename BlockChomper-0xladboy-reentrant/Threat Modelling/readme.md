@@ -8,7 +8,7 @@ In this section we provide a structured approach for security researchers to ide
 
 ## Threatdown & How to Render Attack Trees
 
-The tool used to generate the attack trees was [Threatdown]([https://threatdown.xyz/#what-is-threat-modeling](https://threatdown.xyz/#what-is-threat-modeling)). In each attack goal specific folder we provide the original threatdown source code, an SVG output generation and also an explanation readme to further focus researchers attention when using the attack trees.
+The tool used to generate the attack trees was [Threatdown](https://threatdown.xyz/#what-is-threat-modeling). In each attack goal specific folder we provide the original threatdown source code, an SVG output generation and also an explanation readme to further focus researchers attention when using the attack trees.
 
 Please note that the ********SVG file should be viewed ‘Raw’******** when viewing through the Git interface for it to render as intended by the author. 
 
@@ -28,21 +28,21 @@ Code4rena, and they encourage contributions to develop, extend, and improve the 
 
 ## High Level Attack Trees
 
-1. [Consensus Manipulation](BlockChomper-0xladboy-reentrant/Threat Modelling/high_level_threat_modelling/consensus_manipulation)
-2. [Denial of Service](BlockChomper-0xladboy-reentrant/Threat Modelling/high_level_threat_modelling/denial_of_service)
-3. [Freeze Funds](BlockChomper-0xladboy-reentrant/Threat Modelling/high_level_threat_modelling/freeze_funds)
-4. [Steal Funds](BlockChomper-0xladboy-reentrant/Threat Modelling/high_level_threat_modelling/steal_funds)
+1. [Consensus Manipulation](https://github.com/BlockChomper/threats-zetachain/tree/9dc6c4fa6d7b98735b5f4529be060c761779b9c1/BlockChomper-0xladboy-reentrant/Threat%20Modelling/high_level_threat_modelling/consensus_manipulation)
+2. [Denial of Service](https://github.com/BlockChomper/threats-zetachain/tree/9dc6c4fa6d7b98735b5f4529be060c761779b9c1/BlockChomper-0xladboy-reentrant/Threat%20Modelling/high_level_threat_modelling/denial_of_service)
+3. [Freeze Funds](https://github.com/BlockChomper/threats-zetachain/tree/9dc6c4fa6d7b98735b5f4529be060c761779b9c1/BlockChomper-0xladboy-reentrant/Threat%20Modelling/high_level_threat_modelling/freeze_funds)
+4. [Steal Funds](https://github.com/BlockChomper/threats-zetachain/tree/9dc6c4fa6d7b98735b5f4529be060c761779b9c1/BlockChomper-0xladboy-reentrant/Threat%20Modelling/high_level_threat_modelling/steal_funds)
 
 ## Module Level Attack Trees
 
 1. [Crosschain Module](https://github.com/BlockChomper/threats-zetachain/tree/90f1f42b499ffe2dac783706813cccf4ab3d31f0/BlockChomper-0xladboy-reentrant/Threat%20Modelling/high_level_threat_modelling/consensus_manipulation)
-2. [Emission Module](BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_emission_module)
-3. [Fungible Module](BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_fungible_module)
-4. [Observer Module](BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_oberserver_module)
+2. [Emission Module](https://github.com/BlockChomper/threats-zetachain/tree/9dc6c4fa6d7b98735b5f4529be060c761779b9c1/BlockChomper-0xladboy-reentrant/Threat%20Modelling/modules_level_threat_modelling/disrupt_emission_module)
+3. [Fungible Module](https://github.com/BlockChomper/threats-zetachain/tree/9dc6c4fa6d7b98735b5f4529be060c761779b9c1/BlockChomper-0xladboy-reentrant/Threat%20Modelling/modules_level_threat_modelling/disrupt_fungible_module)
+4. [Observer Module](https://github.com/BlockChomper/threats-zetachain/tree/9dc6c4fa6d7b98735b5f4529be060c761779b9c1/BlockChomper-0xladboy-reentrant/Threat%20Modelling/modules_level_threat_modelling/disrupt_oberserver_module)
 
 ## Key Invariants to Hold
 
-In [this section] as aforementioned, we outline key invariants, which are properties that must always hold true for the ZetaChain system to function securely. 
+In [this section](https://github.com/BlockChomper/threats-zetachain/tree/9dc6c4fa6d7b98735b5f4529be060c761779b9c1/BlockChomper-0xladboy-reentrant/Threat%20Modelling/key_invariant) as aforementioned, we outline key invariants, which are properties that must always hold true for the ZetaChain system to function securely. 
 
 ## How to Generate more Attack Trees specific to ZetaChain
 
