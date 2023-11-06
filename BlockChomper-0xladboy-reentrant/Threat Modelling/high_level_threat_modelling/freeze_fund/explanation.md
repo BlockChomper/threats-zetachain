@@ -1,4 +1,4 @@
-## Goal: Freeze Funds
+## Attack Tree Documentation: Attack Vectors to Freeze Funds
 
 **Inbound Transaction Handling Issues**
 - Invalid CCTXs are sent to disrupt the normal transaction process.
