@@ -35,7 +35,7 @@ Code4rena, and they encourage contributions to develop, extend, and improve the 
 
 ## Module Level Attack Trees
 
-1. ![Crosschain Module]([BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_cross_chain_module](https://github.com/BlockChomper/threats-zetachain/tree/90f1f42b499ffe2dac783706813cccf4ab3d31f0/BlockChomper-0xladboy-reentrant/Threat%20Modelling/high_level_threat_modelling/consensus_manipulation))
+1. [Crosschain Module](https://github.com/BlockChomper/threats-zetachain/tree/90f1f42b499ffe2dac783706813cccf4ab3d31f0/BlockChomper-0xladboy-reentrant/Threat%20Modelling/high_level_threat_modelling/consensus_manipulation)
 2. [Emission Module](BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_emission_module)
 3. [Fungible Module](BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_fungible_module)
 4. [Observer Module](BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_oberserver_module)
