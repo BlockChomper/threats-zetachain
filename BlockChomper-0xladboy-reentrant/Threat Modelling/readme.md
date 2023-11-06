@@ -8,7 +8,7 @@ In this section we provide a structured approach for security researchers to ide
 
 ## Threatdown & How to Render Attack Trees
 
-The tool used to generate the attack trees was [Threatdown](https://threatdown.xyz/#what-is-threat-modeling). In each attack goal specific folder we provide the original threatdown source code, an SVG output generation and also an explanation readme to further focus researchers attention when using the attack trees.
+The tool used to generate the attack trees was [Threatdown](https://threatdown.xyz/). In each attack goal specific folder we provide the original threatdown source code, an SVG output generation and also an explanation readme to further focus researchers attention when using the attack trees.
 
 Please note that the ********SVG file can be viewed ‘Raw’******** when viewing through the Git interface for it to render as intended by the author. 
 
