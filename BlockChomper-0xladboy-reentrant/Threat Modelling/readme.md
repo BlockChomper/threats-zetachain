@@ -1,32 +1,58 @@
-# What is threat modelling
+# Threat Modelling Readme
 
-Threat modeling is a structured approach that involves identifying and documenting potential threats to a system and outlining the harm these threats could cause from the perspective of an attacker. The goal of threat modeling is to provide a strategic overview of the security risks to a project, enabling organizations to think about, discuss, and prioritize security at every stage of the software development lifecycle. 
+# Threat Modelling
 
-It's a way for defenders to shift their mindset from simple checklists to a more complex understanding of the attack vectors, as attackers tend to think in terms of interconnected graphs rather than linear lists.
+![Untitled](Threat%20Modelling%20Readme%20d68bf4002566456187310d0a65226881/Untitled.png)
 
-Threatdown is an open standard designed to integrate threat modeling into all phases of development. It offers a friendly notation system that is easy to learn for those already familiar with Markdown. It's simple and constrained, focusing on the most critical aspects of security, and it's maintainable due to its plain text format, which simplifies collaboration and updating. 
+## Introduction
 
-Threatdown compiles into visual graphs with the help of mermaid.js, making the threat models easier to understand and communicate.
+In this section we provide a structured approach for security researchers to identify and document potential threats to the ZetaChain network and outline the harm that could be caused from the perspective of the attacker.  Our goal is to provide a strategic overview of the potential risks to the project and enable researchers to visualize attack vectors, helping to refine their testing strategy. The ZetaLotus team took the approach of providing both high level attack trees, covering attacker goals of consensus manipulation, denial of service, freezing and stealing funds. We then deep dive into more granular attack trees targeting the custom ZetaChain modules, analyzing methods to disrupt the crosschain, emission, fungible and observer modules. We then further outline key invariants, which are properties that must always hold true for the ZetaChain system to function securely. Lastly, we even provide a guide for researchers to compose further custom attack trees specific to their end goal and demonstrate how AI can be used to assist researchers in attacking!
+
+## Threatdown & How to Render Attack Trees
+
+The tool used to generate the attack trees was [Threatdown]([https://threatdown.xyz/#what-is-threat-modeling](https://threatdown.xyz/#what-is-threat-modeling)). In each attack goal specific folder we provide the original threatdown source code, an SVG output generation and also an explanation readme to further focus researchers attention when using the attack trees.
+
+Please note that the ********SVG file should be viewed ‘Raw’******** when viewing through the Git interface for it to render as intended by the author. 
 
 Here's a brief summary of how Threatdown works:
 
 - **Conditions**: These can be actions or states within the system that may lead to security risks.
 - **Assumptions**: These are potential issues or states marked with a bullet ending in a question mark.
-- **Mitigations**: These are solutions or safeguards that can block a condition or assumption, marked as complete [x] or incomplete [ ].
+- **Mitigations**: These are solutions or safeguards that can block a condition or assumption, marked as complete or incomplete [ ].
 - **Logical Combinations**: Elements within the threat model can be combined using AND (+) or OR (-) bullets.
 - **Comments**: Nested comments can be added under any item with a ">" to provide additional explanations.
 
 To visualize a threat model created with Threatdown, one can run a command to generate a graph, which helps in visualizing the interconnections and dependencies of various components within the threat model.
 
-Lastly, threat models, as documented by Threatdown or any other method, should be treated with high sensitivity, as they contain critical information about the system's vulnerabilities that could be exploited if fallen into the wrong hands. Threatdown is maintained by Code4rena, and they encourage contributions to develop, extend, and improve the standard through collaboration on GitHub.
+Lastly, threat models, as documented by Threatdown or any other method, should be treated with high sensitivity, as they contain 
+critical information about the system's vulnerabilities that could be exploited if fallen into the wrong hands. Threatdown is maintained by 
+Code4rena, and they encourage contributions to develop, extend, and improve the standard through collaboration on GitHub.
 
-More information: https://threatdown.xyz/#what-is-threat-modeling
+## High Level Attack Trees
 
-# How intrepret attack tree
+1. [Consensus Manipulation](BlockChomper-0xladboy-reentrant/Threat Modelling/high_level_threat_modelling/consensus_manipulation)
+2. [Denial of Service](BlockChomper-0xladboy-reentrant/Threat Modelling/high_level_threat_modelling/denial_of_service)
+3. [Freeze Funds](BlockChomper-0xladboy-reentrant/Threat Modelling/high_level_threat_modelling/freeze_funds)
+4. [Steal Funds](BlockChomper-0xladboy-reentrant/Threat Modelling/high_level_threat_modelling/steal_funds)
 
-Identifying the goal is critical as it forms the foundation of the attack tree.
+## Module Level Attack Trees
 
-To utilize an attack tree for security research, follow these steps:
+1. [Crosschain Module](BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_cross_chain_module)
+2. [Emission Module](BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_emission_module)
+3. [Fungible Module](BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_fungible_module)
+4. [Observer Module](BlockChomper-0xladboy-reentrant/Threat Modelling/modules_level_threat_modelling/disrupt_oberserver_module)
+
+## Key Invariants to Hold
+
+In [this section] as aforementioned, we outline key invariants, which are properties that must always hold true for the ZetaChain system to function securely. 
+
+## How to Generate more Attack Trees specific to ZetaChain
+
+We recommend that if security researchers want to generate more attack trees, it will be effective to use a smaller goal or ‘leaf’ from an existing tree as a starting point. Using a ‘leaf’ from the attack trees we have already provided as the attacker end goal will allow a different tree to be created which is more granular and specific to the researchers objective. This approach will help to systematically uncover different security threats by expanding on specific parts of the larger attack surface.
+
+## How to use AI to assist with Attack Tree Interpretation
+
+As a bonus, we outline a methodology using AI to further enhance researchers ability to utilize the attack trees that we have provided.
 
 1. Copy the content of `attack_tree.td`.
 2. Paste it into a conversation with ChatGPT.
@@ -84,11 +110,3 @@ Based on the attack tree provided, here's a list of "can you" questions for audi
     - Can you induce number overflows or underflows to corrupt transaction logic?
     - Can you exploit system misconfigurations for unauthorized actions?
 ```
-
-# How to generate more attack tree
-
-Attack trees have many variations because they are based on the end goal of an attack. 
-
-To create new trees, it's effective to use a smaller goal or a leaf from an existing tree as the starting point.
- 
-This approach helps to systematically uncover different security threats by building out from specific parts of the larger attack scenario.
