@@ -8,6 +8,8 @@ In the [Threat Modelling](https://github.com/BlockChomper/threats-zetachain/blob
 
 ## Architectural Diagrams
 
+In [Architectural Diagrams] we provide high-level conceptual architectural diagrams for security researchers to analyze. Use of diagrams by researchers is highly recommended so that they may gain further insight on attack surface and potential areas of vulnerability. We provide two crucial architectural diagrams for researchers to utlize, namely the Full Node and Cross Chain Transaction Lifecycle (CCTX). These ‘systems’ are arguably the most important to the ZetaChain protocol’s secure operation and we decided to focus our research on these areas as such. Researchers will also be able to cross reference these diagrams to the [Functional Call Map] section of our Alpha research where take a further technical deep dive into the specific function calls that are used during the CCTX lifecycle.
+
 ## Functional Call Map
 
 While in [Architectural Diagrams] we provided a high-level overview of the architecture and important areas of the ZetaChain network, we take a different approach in [this section]. Functional Call Maps allow a security researcher to take a deeper dive into the code structure of critical functions and visualize how they interact with each other. The functional call maps also further assist researchers in identification of attack surfaces, dependency analysis and spotting unintended functionality. We will provide functional call maps for components within the CCTX lifecycle, permissionless tx validation model and within the permissions and admin group functional area.
