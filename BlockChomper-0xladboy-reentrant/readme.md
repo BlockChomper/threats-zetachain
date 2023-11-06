@@ -2,7 +2,7 @@
 
 # ZetaLotus Alpha Repo, Phase 2
 
-![Untitled](Phase%202%20Readme%20a21b31611b314c5c9446c5d690c20f46/Untitled.png)
+![https://media.discordapp.net/attachments/1137114558016798793/1169310151275184138/block_chomper_a_planet_killer_in_Quantum_Noir_style_featuring_b_2c5a8d53-cf28-4747-b621-88ec21a01509.png?ex=6554eff0&is=65427af0&hm=cee3fdb652c04f45e92b08411655eee4653a12f7ab230be79d175ddf0746f72f&=&width=1335&height=889](https://media.discordapp.net/attachments/1137114558016798793/1169310151275184138/block_chomper_a_planet_killer_in_Quantum_Noir_style_featuring_b_2c5a8d53-cf28-4747-b621-88ec21a01509.png?ex=6554eff0&is=65427af0&hm=cee3fdb652c04f45e92b08411655eee4653a12f7ab230be79d175ddf0746f72f&=&width=1335&height=889)
 
 ## Threat Modelling
 
