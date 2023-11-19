@@ -6,7 +6,6 @@
   - Phase 1 awards: $10,000 USDC
   - Phase 2 awards: $30,000 USDC
   - Judge awards: $10,000 USDC
-- [Guidelines for C4 Alpha competitions](https://docs.google.com/document/d/1s7-giM3kGbIeJv789ooJ8C7hXhoQBkUgOHyYnjDPw6s/edit?usp=sharing)
 - Phase 1 dates: October 27, 2023 20:00 UTC - October 30, 2023 20:00 UTC
 - Phase 2 begins October 30, 2023 20:00 UTC
 - Phase 2 ends November 6, 2023 20:00 UTC
@@ -16,9 +15,9 @@
 This repo is intended to be forked by each team participating in ZetaChain's Alpha competition. Please follow these steps for your team:
 
 - [ ] Fork this repo to your own private repo within the team captain's Github account
-- [ ] Add the judge (`0xean`) and the `c4-audit` user to your repo, for oversight
+- [ ] Add the judge and the `c4-audit` user to your repo, for oversight
 - [ ] Create a folder within your repo that includes your team name (or team members’ names, with captain's username first, e.g. `horsefacts-bytes032-Trust`). Create an index readme.md file in that folder that outlines the contents of the folder and attributes specific contributions by team members.
-- [ ] Create the [Phase 2 deliverables outlined in the Guidelines](https://docs.google.com/document/d/1s7-giM3kGbIeJv789ooJ8C7hXhoQBkUgOHyYnjDPw6s/edit#heading=h.l62h45szomwz)
+- [ ] Create the Phase 2 deliverables outlined in the guidelines
 - [ ] At the conclusion of Phase 2, the most recent commit **in your own repo** will be reviewed by the judge and sponsor. DO NOT share threats back to this repo. 
 
 **Note:** Alpha repos should be made public following the competition; threats repos should be managed with great caution.
